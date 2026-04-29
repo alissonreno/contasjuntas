@@ -8,7 +8,6 @@
     <meta name="theme-color" content="#6c5ce7">
     <title>ContasJuntas - Controle Financeiro do Casal</title>
     
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
     
@@ -68,14 +67,7 @@
             background: linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 50%, #16213e 100%);
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 15px;
-            padding-bottom: 100px;
-            position: relative;
-            z-index: 1;
-        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 15px; padding-bottom: 100px; position: relative; z-index: 1; }
 
         .header {
             background: var(--glass);
@@ -104,635 +96,208 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 1.4em;
         }
-
         .logo-text {
-            font-size: 1.6em;
-            font-weight: 800;
+            font-size: 1.6em; font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .sync-indicator {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.8em;
-            color: var(--gray);
-        }
-
-        .sync-dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: var(--success);
-        }
-
+        .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .sync-indicator { display: flex; align-items: center; gap: 6px; font-size: 0.8em; color: var(--gray); }
+        .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); }
         .sync-dot.offline { background: var(--danger); }
         .sync-dot.syncing { background: var(--warning); animation: pulse 1s infinite; }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
+        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
         .icon-btn {
-            background: var(--light);
-            border: none;
-            width: 40px; height: 40px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 1.2em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            color: var(--dark);
+            background: var(--light); border: none; width: 40px; height: 40px;
+            border-radius: 12px; cursor: pointer; font-size: 1.2em;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); color: var(--dark);
         }
+        .icon-btn:hover { background: var(--primary); color: white; transform: translateY(-2px); }
 
-        .icon-btn:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .tabs {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            background: var(--light);
-            padding: 5px;
-            border-radius: 18px;
-        }
-
+        .tabs { display: flex; gap: 6px; flex-wrap: wrap; background: var(--light); padding: 5px; border-radius: 18px; }
         .tab-btn {
-            padding: 10px 18px;
-            border: none;
-            background: transparent;
-            color: var(--gray);
-            border-radius: 14px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-            white-space: nowrap;
-            font-size: 0.9em;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            padding: 10px 18px; border: none; background: transparent; color: var(--gray);
+            border-radius: 14px; cursor: pointer; font-weight: 600; transition: var(--transition);
+            white-space: nowrap; font-size: 0.9em; display: flex; align-items: center; gap: 6px;
         }
-
-        .tab-btn.active {
-            background: var(--white);
-            color: var(--primary);
-            box-shadow: var(--shadow);
-            font-weight: 700;
-        }
-
-        [data-theme="dark"] .tab-btn.active {
-            background: var(--primary);
-            color: white;
-        }
+        .tab-btn.active { background: var(--white); color: var(--primary); box-shadow: var(--shadow); font-weight: 700; }
+        [data-theme="dark"] .tab-btn.active { background: var(--primary); color: white; }
 
         .content {
-            background: var(--glass);
-            backdrop-filter: blur(20px) saturate(180%);
+            background: var(--glass); backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: var(--radius-lg);
-            padding: 25px;
-            box-shadow: var(--shadow-xl);
-            min-height: 500px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius-lg); padding: 25px; box-shadow: var(--shadow-xl);
+            min-height: 500px; border: 1px solid rgba(255,255,255,0.2);
         }
-
-        .tab-content {
-            display: none;
-            animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
+        .tab-content { display: none; animation: fadeInUp 0.4s cubic-bezier(0.4,0,0.2,1); }
         .tab-content.active { display: block; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(15px);} to{opacity:1;transform:translateY(0);} }
 
         .section-title {
-            font-size: 1.8em;
-            font-weight: 800;
+            font-size: 1.8em; font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
             margin-bottom: 20px;
         }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-            background: var(--light);
-            padding: 20px;
-            border-radius: var(--radius);
-        }
-
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; background: var(--light); padding: 20px; border-radius: var(--radius); }
         .form-group { display: flex; flex-direction: column; gap: 6px; }
-
-        .form-label {
-            font-weight: 600;
-            font-size: 0.8em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--gray);
-        }
-
+        .form-label { font-weight: 600; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); }
         .form-input {
-            padding: 11px 14px;
-            border: 2px solid transparent;
-            border-radius: 10px;
-            font-size: 0.9em;
-            transition: var(--transition);
-            background: var(--white);
-            color: var(--dark);
-            box-shadow: var(--shadow-sm);
+            padding: 11px 14px; border: 2px solid transparent; border-radius: 10px; font-size: 0.9em;
+            transition: var(--transition); background: var(--white); color: var(--dark); box-shadow: var(--shadow-sm);
         }
-
-        [data-theme="dark"] .form-input {
-            background: #2d2d2d;
-            color: #fff;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.12);
-            transform: translateY(-1px);
-        }
+        [data-theme="dark"] .form-input { background: #2d2d2d; color: #fff; }
+        .form-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(108,92,231,0.12); transform: translateY(-1px); }
 
         .btn {
-            padding: 11px 22px;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9em;
+            padding: 11px 22px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer;
+            transition: var(--transition); display: inline-flex; align-items: center; gap: 6px; font-size: 0.9em;
             -webkit-tap-highlight-color: transparent;
         }
-
         .btn:active { transform: scale(0.96); }
-
-        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); }
-        .btn-success { background: linear-gradient(135deg, var(--success), #55efc4); color: white; box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3); }
-        .btn-warning { background: linear-gradient(135deg, var(--warning), #ffeaa7); color: var(--dark); box-shadow: 0 4px 15px rgba(253, 203, 110, 0.3); }
-        .btn-danger { background: linear-gradient(135deg, var(--danger), #fab1a0); color: white; box-shadow: 0 4px 15px rgba(255, 118, 117, 0.3); }
-        .btn-info { background: linear-gradient(135deg, var(--info), #a29bfe); color: white; box-shadow: 0 4px 15px rgba(116, 185, 255, 0.3); }
+        .btn-primary { background: linear-gradient(135deg,var(--primary),var(--primary-light)); color:white; box-shadow:0 4px 15px rgba(108,92,231,0.3); }
+        .btn-success { background: linear-gradient(135deg,var(--success),#55efc4); color:white; box-shadow:0 4px 15px rgba(0,184,148,0.3); }
+        .btn-warning { background: linear-gradient(135deg,var(--warning),#ffeaa7); color:var(--dark); box-shadow:0 4px 15px rgba(253,203,110,0.3); }
+        .btn-danger { background: linear-gradient(135deg,var(--danger),#fab1a0); color:white; box-shadow:0 4px 15px rgba(255,118,117,0.3); }
+        .btn-info { background: linear-gradient(135deg,var(--info),#a29bfe); color:white; box-shadow:0 4px 15px rgba(116,185,255,0.3); }
         .btn-sm { padding: 7px 14px; font-size: 0.8em; border-radius: 8px; }
         .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 12px;
-            margin: 20px 0;
-        }
-
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0; }
         .stat-card {
-            background: var(--white);
-            padding: 18px;
-            border-radius: var(--radius);
-            text-align: center;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
+            background: var(--white); padding: 18px; border-radius: var(--radius); text-align: center;
+            transition: var(--transition); border: 2px solid transparent; position: relative; overflow: hidden;
         }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-
-        .stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary-light);
-        }
-
-        .stat-icon { font-size: 1.8em; margin-bottom: 8px; }
-        .stat-value {
-            font-size: 1.8em;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 8px 0;
-        }
-        .stat-label { font-size: 0.8em; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--primary),var(--secondary)); }
+        .stat-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-lg); border-color:var(--primary-light); }
+        .stat-icon { font-size:1.8em; margin-bottom:8px; }
+        .stat-value { font-size:1.8em; font-weight:800; background:linear-gradient(135deg,var(--primary),var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:8px 0; }
+        .stat-label { font-size:0.8em; color:var(--gray); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
 
         .accounts-list { display: grid; gap: 10px; }
-
         .account-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 16px;
-            transition: var(--transition);
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 15px;
-            align-items: center;
-            border-left: 4px solid transparent;
-            animation: slideIn 0.3s ease;
+            background: var(--white); border-radius: var(--radius); padding: 16px; transition: var(--transition);
+            display: grid; grid-template-columns: 1fr auto; gap: 15px; align-items: center;
+            border-left: 4px solid transparent; animation: slideIn 0.3s ease;
         }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-15px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
+        @keyframes slideIn { from{opacity:0;transform:translateX(-15px);} to{opacity:1;transform:translateX(0);} }
         .account-card.paid { border-left-color: var(--success); opacity: 0.85; }
         .account-card.overdue { border-left-color: var(--danger); background: #fff5f5; }
         .account-card.fixed { border-left-color: var(--primary); }
         .account-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-
         [data-theme="dark"] .account-card.overdue { background: #2d1f1f; }
-
         .account-name { font-weight: 700; font-size: 1.05em; }
-        .account-amount {
-            font-size: 1.3em;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .account-amount { font-size:1.3em; font-weight:800; background:linear-gradient(135deg,var(--primary),var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
-        .badge {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.7em;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
+        .badge { padding: 3px 8px; border-radius: 12px; font-size: 0.7em; font-weight: 700; text-transform: uppercase; }
         .badge-primary { background: #e8e5ff; color: var(--primary); }
         .badge-success { background: #d4edda; color: #155724; }
         .badge-danger { background: #f8d7da; color: #721c24; }
         .badge-warning { background: #fff3cd; color: #856404; }
 
-        .filter-pills {
-            display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 15px;
-        }
-
+        .filter-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 15px; }
         .filter-pill {
-            padding: 7px 14px;
-            border-radius: 16px;
-            background: var(--light);
-            border: 2px solid transparent;
-            cursor: pointer;
-            font-size: 0.8em;
-            font-weight: 600;
-            transition: var(--transition);
-            white-space: nowrap;
+            padding: 7px 14px; border-radius: 16px; background: var(--light); border: 2px solid transparent;
+            cursor: pointer; font-size: 0.8em; font-weight: 600; transition: var(--transition); white-space: nowrap;
         }
+        .filter-pill.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        .filter-pill.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .search-bar {
-            display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;
-        }
-
+        .search-bar { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
         .search-input {
-            flex: 1;
-            min-width: 200px;
-            padding: 10px 16px;
-            border: 2px solid transparent;
-            border-radius: 12px;
-            font-size: 0.9em;
-            background: var(--white);
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
+            flex: 1; min-width: 200px; padding: 10px 16px; border: 2px solid transparent;
+            border-radius: 12px; font-size: 0.9em; background: var(--white); box-shadow: var(--shadow-sm); transition: var(--transition);
         }
+        .search-input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(108,92,231,0.1); }
 
-        .search-input:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
-        }
-
-        /* Calendar Styles - CORRIGIDO */
-        .calendar-container {
-            background: var(--light);
-            border-radius: var(--radius);
-            padding: 20px;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .month-title {
-            font-size: 1.3em;
-            font-weight: 700;
-            min-width: 200px;
-            text-align: center;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
-        }
-
-        .weekday-header {
-            text-align: center;
-            font-weight: 700;
-            font-size: 0.75em;
-            padding: 10px 4px;
-            color: var(--gray);
-            text-transform: uppercase;
-        }
-
+        /* Calendar */
+        .calendar-container { background: var(--light); border-radius: var(--radius); padding: 20px; }
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .month-title { font-size: 1.3em; font-weight: 700; min-width: 200px; text-align: center; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+        .weekday-header { text-align: center; font-weight: 700; font-size: 0.75em; padding: 10px 4px; color: var(--gray); text-transform: uppercase; }
         .calendar-day {
-            background: var(--white);
-            padding: 8px;
-            border-radius: 10px;
-            min-height: 75px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            position: relative;
-            font-size: 0.85em;
+            background: var(--white); padding: 8px; border-radius: 10px; min-height: 75px;
+            cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-size: 0.85em;
         }
-
-        .calendar-day:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        .calendar-day.empty {
-            background: transparent;
-            cursor: default;
-            min-height: 75px;
-        }
-
-        .calendar-day.today {
-            background: linear-gradient(135deg, #667eea33, #764ba233);
-            border-color: var(--primary);
-            font-weight: 700;
-        }
-
-        [data-theme="dark"] .calendar-day.today {
-            background: linear-gradient(135deg, #667eea55, #764ba255);
-        }
-
-        .calendar-day .day-number {
-            font-weight: 700;
-            margin-bottom: 4px;
-            font-size: 1em;
-        }
-
-        .calendar-day .day-indicator {
-            display: flex;
-            gap: 2px;
-            flex-wrap: wrap;
-            margin-top: 4px;
-        }
-
-        .calendar-day .day-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .calendar-day .day-count {
-            font-size: 0.7em;
-            color: var(--gray);
-            display: block;
-            margin-top: 2px;
-        }
+        .calendar-day:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow); }
+        .calendar-day.empty { background: transparent; cursor: default; }
+        .calendar-day.today { background: linear-gradient(135deg, #667eea33, #764ba233); border-color: var(--primary); font-weight: 700; }
+        [data-theme="dark"] .calendar-day.today { background: linear-gradient(135deg, #667eea55, #764ba255); }
+        .calendar-day .day-number { font-weight: 700; margin-bottom: 4px; font-size: 1em; }
+        .calendar-day .day-indicator { display: flex; gap: 2px; flex-wrap: wrap; margin-top: 4px; }
+        .calendar-day .day-dot { width: 5px; height: 5px; border-radius: 50%; display: inline-block; }
+        .calendar-day .day-count { font-size: 0.7em; color: var(--gray); display: block; margin-top: 2px; }
 
         .plan-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin: 12px 0;
-            border: 2px solid transparent;
-            transition: var(--transition);
+            background: var(--white); border-radius: var(--radius); padding: 20px; margin: 12px 0;
+            border: 2px solid transparent; transition: var(--transition);
         }
-
         .plan-card.active-plan { border-color: var(--primary); box-shadow: var(--shadow-lg); }
         .plan-card.completed-plan { border-color: var(--success); }
 
-        .progress-bar {
-            background: #e0e0e0;
-            border-radius: 15px;
-            height: 20px;
-            margin: 12px 0;
-            overflow: hidden;
-        }
-
+        .progress-bar { background: #e0e0e0; border-radius: 15px; height: 20px; margin: 12px 0; overflow: hidden; }
         .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--success), #55efc4);
-            transition: width 1s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 0.75em;
+            height: 100%; background: linear-gradient(90deg, var(--success), #55efc4);
+            transition: width 1s ease; display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: bold; font-size: 0.75em;
         }
 
         .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            padding: 20px;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            align-items: center; justify-content: center; z-index: 2000; padding: 20px;
         }
-
         .modal.show { display: flex; }
-
         .modal-content {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 25px;
-            border-radius: var(--radius-lg);
-            max-width: 500px;
-            width: 100%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: modalIn 0.3s ease;
+            background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 25px; border-radius: var(--radius-lg); max-width: 500px; width: 100%;
+            max-height: 80vh; overflow-y: auto; box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255,255,255,0.2); animation: modalIn 0.3s ease;
         }
-
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.9) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--light);
-        }
-
+        @keyframes modalIn { from{opacity:0;transform:scale(0.9) translateY(20px);} to{opacity:1;transform:scale(1) translateY(0);} }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--light); }
         .close-btn {
-            background: var(--light);
-            border: none;
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
+            background: var(--light); border: none; width: 32px; height: 32px; border-radius: 50%;
+            cursor: pointer; font-size: 1.1em; display: flex; align-items: center; justify-content: center; transition: var(--transition);
         }
-
         .close-btn:hover { background: var(--danger); color: white; transform: rotate(90deg); }
 
-        .toast-container {
-            position: fixed;
-            top: 20px; right: 20px;
-            z-index: 3000;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            pointer-events: none;
-        }
-
+        .toast-container { position: fixed; top: 20px; right: 20px; z-index: 3000; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
         .toast {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            padding: 14px 18px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-xl);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            min-width: 280px;
-            max-width: 380px;
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: toastIn 0.3s ease;
-            pointer-events: auto;
+            background: var(--glass); backdrop-filter: blur(20px); padding: 14px 18px; border-radius: 12px;
+            box-shadow: var(--shadow-xl); font-weight: 600; display: flex; align-items: center; gap: 10px;
+            min-width: 280px; max-width: 380px; border: 1px solid rgba(255,255,255,0.2);
+            animation: toastIn 0.3s ease; pointer-events: auto;
         }
-
-        @keyframes toastIn {
-            from { opacity: 0; transform: translateX(80px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
+        @keyframes toastIn { from{opacity:0;transform:translateX(80px);} to{opacity:1;transform:translateX(0);} }
         .toast.success { border-left: 4px solid var(--success); }
         .toast.error { border-left: 4px solid var(--danger); }
         .toast.warning { border-left: 4px solid var(--warning); }
         .toast.info { border-left: 4px solid var(--info); }
 
         .mobile-nav {
-            display: none;
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 -8px 30px rgba(0,0,0,0.1);
-            padding: 8px 15px;
-            padding-bottom: calc(8px + env(safe-area-inset-bottom));
-            z-index: 1000;
+            display: none; position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 -8px 30px rgba(0,0,0,0.1); padding: 8px 15px;
+            padding-bottom: calc(8px + env(safe-area-inset-bottom)); z-index: 1000;
             border-top: 1px solid rgba(255,255,255,0.2);
         }
-
-        .mobile-nav .tabs {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            background: none;
-            padding: 0;
-            border-radius: 0;
-        }
-
-        .mobile-nav .tab-btn {
-            flex-direction: column;
-            padding: 6px 2px;
-            font-size: 0.65em;
-            gap: 2px;
-            background: none;
-            color: var(--gray);
-            border-radius: 10px;
-            min-width: 55px;
-        }
-
-        .mobile-nav .tab-btn.active {
-            background: var(--primary);
-            color: white;
-        }
-
+        .mobile-nav .tabs { display: flex; justify-content: space-around; width: 100%; background: none; padding: 0; border-radius: 0; }
+        .mobile-nav .tab-btn { flex-direction: column; padding: 6px 2px; font-size: 0.65em; gap: 2px; background: none; color: var(--gray); border-radius: 10px; min-width: 55px; }
+        .mobile-nav .tab-btn.active { background: var(--primary); color: white; }
         .mobile-nav .tab-icon { font-size: 1.4em; }
 
         .fab {
-            position: fixed;
-            bottom: 90px;
-            right: 25px;
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            font-size: 22px;
-            cursor: pointer;
-            box-shadow: var(--shadow-xl);
-            z-index: 500;
-            transition: var(--transition);
-            display: none;
-            align-items: center;
-            justify-content: center;
+            position: fixed; bottom: 90px; right: 25px; width: 56px; height: 56px;
+            border-radius: 16px; background: linear-gradient(135deg,var(--primary),var(--secondary));
+            color: white; border: none; font-size: 22px; cursor: pointer;
+            box-shadow: var(--shadow-xl); z-index: 500; transition: var(--transition);
+            display: none; align-items: center; justify-content: center;
         }
-
-        .empty-state {
-            text-align: center;
-            padding: 50px 20px;
-            color: var(--gray);
-        }
-
+        .empty-state { text-align: center; padding: 50px 20px; color: var(--gray); }
         .empty-state-icon { font-size: 3.5em; margin-bottom: 15px; }
 
         @media (max-width: 768px) {
@@ -746,24 +311,16 @@
             .section-title { font-size: 1.4em; }
             .calendar-day { min-height: 55px; padding: 5px; font-size: 0.75em; }
         }
-
-        @media (min-width: 769px) {
-            .mobile-nav, .fab { display: none; }
-        }
-
+        @media (min-width: 769px) { .mobile-nav,.fab { display: none; } }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--light); border-radius: 8px; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 8px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg,var(--primary),var(--secondary)); border-radius: 8px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
-            <div class="logo">
-                <div class="logo-icon">💑</div>
-                <div class="logo-text">ContasJuntas</div>
-            </div>
+            <div class="logo"><div class="logo-icon">💑</div><div class="logo-text">ContasJuntas</div></div>
             <div class="tabs" id="desktopTabs">
                 <button class="tab-btn active" onclick="switchTab('dashboard')">🏠 Home</button>
                 <button class="tab-btn" onclick="switchTab('accounts')">📋 Contas</button>
@@ -772,101 +329,73 @@
                 <button class="tab-btn" onclick="switchTab('goals')">🏆 Metas</button>
             </div>
             <div class="header-actions">
-                <div class="sync-indicator">
-                    <span class="sync-dot" id="syncDot"></span>
-                    <span id="syncText">Salvo</span>
-                </div>
+                <span class="sync-indicator"><span class="sync-dot" id="syncDot"></span><span id="syncText">Conectando...</span></span>
                 <button class="icon-btn" onclick="exportData()" title="Backup">💾</button>
                 <button class="icon-btn" onclick="importData()" title="Importar">📥</button>
-                <button class="icon-btn" onclick="toggleTheme()" id="themeToggle" title="Alternar tema">🌙</button>
+                <button class="icon-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
             </div>
         </div>
 
-        <!-- Content -->
         <div class="content">
-            <!-- Dashboard -->
             <div id="dashboard-tab" class="tab-content active">
                 <h2 class="section-title">🏠 Dashboard Mensal</h2>
-                <p style="color:var(--gray);margin-bottom:20px;">
-                    📅 Visão de <strong id="currentMonthLabel"></strong>
-                </p>
+                <p style="color:var(--gray);margin-bottom:20px;">📅 <strong id="currentMonthLabel"></strong></p>
                 <div class="stats-grid" id="dashboardStats"></div>
-                
                 <h3 style="margin-top:25px;">⚡ Ações Rápidas</h3>
                 <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr));">
-                    <div class="stat-card" onclick="quickAddAccount()" style="cursor:pointer;">
-                        <div class="stat-icon">➕</div>
-                        <div class="stat-label">Nova Conta</div>
-                    </div>
-                    <div class="stat-card" onclick="switchTab('plan')" style="cursor:pointer;">
-                        <div class="stat-icon">🎯</div>
-                        <div class="stat-label">Novo Plano</div>
-                    </div>
+                    <div class="stat-card" onclick="quickAddAccount()" style="cursor:pointer;"><div class="stat-icon">➕</div><div class="stat-label">Nova Conta</div></div>
+                    <div class="stat-card" onclick="switchTab('plan')" style="cursor:pointer;"><div class="stat-icon">🎯</div><div class="stat-label">Novo Plano</div></div>
                 </div>
-                
                 <h3 style="margin-top:25px;">📅 Próximas Contas</h3>
                 <div id="monthAccounts"></div>
             </div>
 
-            <!-- Accounts -->
             <div id="accounts-tab" class="tab-content">
                 <h2 class="section-title">📋 Contas</h2>
-                
-                <div class="search-bar">
-                    <input type="text" class="search-input" id="searchAccounts" placeholder="🔍 Buscar contas..." oninput="renderAccounts()">
-                </div>
-                
+                <div class="search-bar"><input type="text" class="search-input" id="searchAccounts" placeholder="🔍 Buscar..." oninput="renderAccounts()"></div>
                 <div class="filter-pills">
-                    <button class="filter-pill active" onclick="setFilter('status','all', this)">📋 Todas</button>
-                    <button class="filter-pill" onclick="setFilter('status','pending', this)">❌ Pendentes</button>
-                    <button class="filter-pill" onclick="setFilter('status','paid', this)">✅ Pagas</button>
-                    <button class="filter-pill" onclick="setFilter('status','overdue', this)">⚠ Vencidas</button>
+                    <button class="filter-pill active" onclick="setFilter('status','all',this)">📋 Todas</button>
+                    <button class="filter-pill" onclick="setFilter('status','pending',this)">❌ Pendentes</button>
+                    <button class="filter-pill" onclick="setFilter('status','paid',this)">✅ Pagas</button>
+                    <button class="filter-pill" onclick="setFilter('status','overdue',this)">⚠ Vencidas</button>
                 </div>
                 <div class="filter-pills">
-                    <button class="filter-pill active" onclick="setFilter('category','all', this)">🏷 Todas</button>
-                    <button class="filter-pill" onclick="setFilter('category','fixa', this)">🔄 Fixas</button>
-                    <button class="filter-pill" onclick="setFilter('category','variavel', this)">📊 Variáveis</button>
-                    <button class="filter-pill" onclick="setFilter('category','cartao', this)">💳 Cartão</button>
-                    <button class="filter-pill" onclick="setFilter('category','outros', this)">📦 Outros</button>
+                    <button class="filter-pill active" onclick="setFilter('category','all',this)">🏷 Todas</button>
+                    <button class="filter-pill" onclick="setFilter('category','aluguel',this)">🏠 Aluguel</button>
+                    <button class="filter-pill" onclick="setFilter('category','luz',this)">💡 Luz</button>
+                    <button class="filter-pill" onclick="setFilter('category','internet',this)">🌐 Internet</button>
+                    <button class="filter-pill" onclick="setFilter('category','cartao',this)">💳 Cartão</button>
+                    <button class="filter-pill" onclick="setFilter('category','variavel',this)">📊 Variável</button>
+                    <button class="filter-pill" onclick="setFilter('category','outros',this)">📦 Outros</button>
                 </div>
-                
                 <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">📝 Nome</label>
-                        <input type="text" class="form-input" id="accountName" placeholder="Ex: Aluguel">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">💵 Valor</label>
-                        <input type="number" class="form-input" id="accountAmount" placeholder="0.00" step="0.01">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">📅 Vencimento</label>
-                        <input type="date" class="form-input" id="accountDate">
-                    </div>
+                    <div class="form-group"><label class="form-label">📝 Nome</label><input type="text" class="form-input" id="accountName" placeholder="Ex: Aluguel"></div>
+                    <div class="form-group"><label class="form-label">💵 Valor</label><input type="number" class="form-input" id="accountAmount" placeholder="0.00" step="0.01"></div>
+                    <div class="form-group"><label class="form-label">📅 Vencimento</label><input type="date" class="form-input" id="accountDate"></div>
                     <div class="form-group">
                         <label class="form-label">🏷 Categoria</label>
-                        <select class="form-input" id="accountCategory">
-                            <option value="fixa">Fixa (Recorrente)</option>
-                            <option value="variavel">Variável</option>
-                            <option value="cartao">Cartão</option>
-                            <option value="outros">Outros</option>
+                        <select class="form-input" id="accountCategory" onchange="handleCategoryChange()">
+                            <option value="aluguel">🏠 Aluguel</option>
+                            <option value="luz">💡 Luz</option>
+                            <option value="internet">🌐 Internet</option>
+                            <option value="cartao">💳 Cartão de Crédito</option>
+                            <option value="variavel">📊 Variável</option>
+                            <option value="outros">📦 Outros</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">💬 Obs</label>
-                        <input type="text" class="form-input" id="accountObs" placeholder="Opcional">
+                    <div class="form-group" id="cartaoNameGroup" style="display:none;">
+                        <label class="form-label">🏦 Nome do Cartão</label>
+                        <input type="text" class="form-input" id="cartaoName" placeholder="Ex: Nubank, Inter...">
                     </div>
+                    <div class="form-group"><label class="form-label">💬 Obs</label><input type="text" class="form-input" id="accountObs" placeholder="Opcional"></div>
                 </div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;">
                     <button class="btn btn-primary" onclick="addAccount()">➕ Adicionar</button>
                     <button class="btn btn-info" onclick="generateFixedAccounts()">🔄 Gerar Recorrentes</button>
-                    <button class="btn btn-warning" onclick="checkOverdueAccounts()">⚠ Ver Vencidas</button>
                 </div>
-                
                 <div class="accounts-list" id="accountsList" style="margin-top:20px;"></div>
             </div>
 
-            <!-- Calendar -->
             <div id="calendar-tab" class="tab-content">
                 <div class="calendar-container">
                     <div class="calendar-header">
@@ -878,117 +407,63 @@
                             <button class="btn btn-info btn-sm" onclick="goToToday()">📍 Hoje</button>
                         </div>
                     </div>
-                    <div id="calendarGridContainer">
-                        <div class="calendar-grid" id="calendarGrid"></div>
-                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
                     <div style="display:flex;gap:15px;margin-top:15px;flex-wrap:wrap;justify-content:center;font-size:0.8em;">
-                        <span>🟢 Pagas</span>
-                        <span>🔴 Pendentes</span>
-                        <span>🟡 Vencendo hoje</span>
+                        <span>🟢 Pagas</span><span>🔴 Pendentes</span><span>🟡 Vencendo</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Plan -->
             <div id="plan-tab" class="tab-content">
                 <h2 class="section-title">🎯 Planejamento Financeiro</h2>
-                
                 <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">🎯 Nome</label>
-                        <input type="text" class="form-input" id="planName" placeholder="Ex: Viagem">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">💰 Valor Total</label>
-                        <input type="number" class="form-input" id="planGoal" placeholder="10000" step="0.01">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">📅 Início</label>
-                        <input type="date" class="form-input" id="planStartDate">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">🎯 Data Alvo</label>
-                        <input type="date" class="form-input" id="planEndDate">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">📆 Ou Meses</label>
-                        <input type="number" class="form-input" id="planMonths" placeholder="12">
-                    </div>
+                    <div class="form-group"><label class="form-label">🎯 Nome</label><input type="text" class="form-input" id="planName" placeholder="Ex: Viagem"></div>
+                    <div class="form-group"><label class="form-label">💰 Valor Total</label><input type="number" class="form-input" id="planGoal" placeholder="10000" step="0.01"></div>
+                    <div class="form-group"><label class="form-label">📅 Início</label><input type="date" class="form-input" id="planStartDate"></div>
+                    <div class="form-group"><label class="form-label">🎯 Data Alvo</label><input type="date" class="form-input" id="planEndDate"></div>
+                    <div class="form-group"><label class="form-label">📆 Ou Meses</label><input type="number" class="form-input" id="planMonths" placeholder="12"></div>
                 </div>
                 <button class="btn btn-primary" onclick="createPlan()">📊 Criar Plano</button>
                 <button class="btn btn-success" onclick="showDepositForm()" style="margin-left:8px;">💵 Depositar</button>
-                
                 <div id="activePlan" style="margin-top:25px;"></div>
                 <div id="plansHistory" style="margin-top:25px;"></div>
             </div>
 
-            <!-- Goals -->
             <div id="goals-tab" class="tab-content">
                 <h2 class="section-title">🏆 Metas</h2>
-                
                 <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">🏆 Meta</label>
-                        <input type="text" class="form-input" id="goalName" placeholder="Ex: Quitar dívidas">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">📅 Prazo</label>
-                        <input type="date" class="form-input" id="goalDeadline">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">📊 Progresso (<span id="progressValue">0</span>%)</label>
-                        <input type="range" class="form-input" id="goalProgress" min="0" max="100" value="0" oninput="document.getElementById('progressValue').textContent=this.value" style="padding:0;height:8px;">
-                    </div>
+                    <div class="form-group"><label class="form-label">🏆 Meta</label><input type="text" class="form-input" id="goalName" placeholder="Ex: Quitar dívidas"></div>
+                    <div class="form-group"><label class="form-label">📅 Prazo</label><input type="date" class="form-input" id="goalDeadline"></div>
+                    <div class="form-group"><label class="form-label">📊 Progresso (<span id="progressValue">0</span>%)</label><input type="range" class="form-input" id="goalProgress" min="0" max="100" value="0" oninput="document.getElementById('progressValue').textContent=this.value" style="padding:0;height:8px;"></div>
                 </div>
                 <button class="btn btn-primary" onclick="addGoal()">➕ Adicionar Meta</button>
-                
                 <div id="goalsList" style="margin-top:20px;display:grid;gap:12px;"></div>
             </div>
         </div>
     </div>
 
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav" id="mobileNav" style="display:none;">
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('dashboard')"><span class="tab-icon">🏠</span> Home</button>
-            <button class="tab-btn" onclick="switchTab('accounts')"><span class="tab-icon">📋</span> Contas</button>
-            <button class="tab-btn" onclick="switchTab('calendar')"><span class="tab-icon">📅</span> Calend</button>
-            <button class="tab-btn" onclick="switchTab('plan')"><span class="tab-icon">🎯</span> Planejar</button>
-            <button class="tab-btn" onclick="switchTab('goals')"><span class="tab-icon">🏆</span> Metas</button>
-        </div>
-    </nav>
-
+    <nav class="mobile-nav" id="mobileNav"><div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('dashboard')"><span class="tab-icon">🏠</span>Home</button>
+        <button class="tab-btn" onclick="switchTab('accounts')"><span class="tab-icon">📋</span>Contas</button>
+        <button class="tab-btn" onclick="switchTab('calendar')"><span class="tab-icon">📅</span>Calend</button>
+        <button class="tab-btn" onclick="switchTab('plan')"><span class="tab-icon">🎯</span>Planejar</button>
+        <button class="tab-btn" onclick="switchTab('goals')"><span class="tab-icon">🏆</span>Metas</button>
+    </div></nav>
     <button class="fab" id="fabButton" onclick="quickAddAccount()">+</button>
 
-    <!-- Modals -->
     <div id="depositModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>💵 Registrar Depósito</h3>
-                <button class="close-btn" onclick="closeDepositModal()">✖</button>
-            </div>
-            <div class="form-group" style="margin-bottom:12px;">
-                <label class="form-label">Valor</label>
-                <input type="number" class="form-input" id="depositAmount" placeholder="0.00" step="0.01">
-            </div>
-            <div class="form-group" style="margin-bottom:12px;">
-                <label class="form-label">Data</label>
-                <input type="date" class="form-input" id="depositDate">
-            </div>
-            <div class="form-group" style="margin-bottom:18px;">
-                <label class="form-label">Descrição</label>
-                <input type="text" class="form-input" id="depositDescription" placeholder="Economia do mês">
-            </div>
+            <div class="modal-header"><h3>💵 Registrar Depósito</h3><button class="close-btn" onclick="closeDepositModal()">✖</button></div>
+            <div class="form-group" style="margin-bottom:12px;"><label class="form-label">🎯 Escolha o Plano</label><select class="form-input" id="depositPlanSelect"></select></div>
+            <div class="form-group" style="margin-bottom:12px;"><label class="form-label">Valor</label><input type="number" class="form-input" id="depositAmount" placeholder="0.00" step="0.01"></div>
+            <div class="form-group" style="margin-bottom:18px;"><label class="form-label">Descrição</label><input type="text" class="form-input" id="depositDescription" placeholder="Economia do mês"></div>
             <button class="btn btn-success" onclick="addDeposit()" style="width:100%;">✅ Confirmar</button>
         </div>
     </div>
 
     <div id="accountModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">Detalhes</h3>
-                <button class="close-btn" onclick="closeModal()">✖</button>
-            </div>
+            <div class="modal-header"><h3 id="modalTitle">Detalhes</h3><button class="close-btn" onclick="closeModal()">✖</button></div>
             <div id="modalContent"></div>
         </div>
     </div>
@@ -996,7 +471,7 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-        // ===== FIREBASE CONFIG =====
+        // ===== FIREBASE =====
         const firebaseConfig = {
             apiKey: "AIzaSyBGjWQ7bViwjaC-hgj5qmfZA_1OztJSSQ8",
             authDomain: "contasjuntas-38331.firebaseapp.com",
@@ -1007,24 +482,20 @@
             appId: "1:764510310228:web:b68fb71cf1ebbbe43142c1"
         };
 
-        // Initialize Firebase
         let database = null;
         let firebaseReady = false;
-        let useFirebase = true; // Mude para false se quiser apenas localStorage
 
         try {
             firebase.initializeApp(firebaseConfig);
             database = firebase.database();
             firebaseReady = true;
             console.log('✅ Firebase conectado!');
-        } catch (e) {
-            console.warn('⚠ Firebase não disponível, usando localStorage:', e.message);
+        } catch(e) {
+            console.warn('⚠ Firebase offline:', e.message);
             firebaseReady = false;
-            useFirebase = false;
         }
 
-        // App State
-        const APP_KEY = 'contasjuntas_casal_data';
+        const APP_KEY = 'contasjuntas_data';
         let userData = { accounts: [], plans: [], goals: [] };
         let currentTheme = localStorage.getItem('contasJuntas_theme') || 'light';
         let currentDate = new Date();
@@ -1033,829 +504,456 @@
         let activeFilters = { status: 'all', category: 'all' };
         let isLoading = true;
 
-        // Init
+        // ===== INIT =====
         function init() {
             document.documentElement.setAttribute('data-theme', currentTheme);
             updateThemeIcon();
-            
-            // Load data
-            if (firebaseReady && useFirebase) {
+            if (firebaseReady) {
                 loadFromFirebase();
-                listenFirebaseChanges();
+                listenFirebase();
             } else {
-                loadFromLocalStorage();
+                loadLocal();
                 renderAll();
                 initFormDates();
                 isLoading = false;
+                updateSyncStatus('offline');
             }
-            
-            // Responsive
             handleResize();
             window.addEventListener('resize', handleResize);
-            
-            // Monitor connection
             if (firebaseReady) {
                 database.ref('.info/connected').on('value', snap => {
-                    const connected = snap.val() === true;
-                    updateSyncStatus(connected ? 'online' : 'offline');
+                    updateSyncStatus(snap.val() === true ? 'online' : 'offline');
                 });
             }
-            
-            setInterval(checkOverdueSilent, 60000); // Check every minute
         }
 
         function handleResize() {
-            const isMobile = window.innerWidth <= 768;
-            document.getElementById('mobileNav').style.display = isMobile ? 'block' : 'none';
-            document.getElementById('fabButton').style.display = isMobile ? 'flex' : 'none';
+            const m = window.innerWidth <= 768;
+            document.getElementById('mobileNav').style.display = m ? 'block' : 'none';
+            document.getElementById('fabButton').style.display = m ? 'flex' : 'none';
         }
 
-        // Firebase
+        // ===== FIREBASE / LOCAL =====
         function loadFromFirebase() {
             updateSyncStatus('syncing');
-            database.ref('data').once('value')
-                .then(snapshot => {
-                    const data = snapshot.val();
-                    if (data) {
-                        userData = data;
-                    }
-                    renderAll();
-                    initFormDates();
-                    isLoading = false;
-                    updateSyncStatus('online');
-                })
-                .catch(err => {
-                    console.error('Erro ao carregar:', err);
-                    loadFromLocalStorage();
-                    renderAll();
-                    initFormDates();
-                    isLoading = false;
-                    updateSyncStatus('offline');
-                });
-        }
-
-        function listenFirebaseChanges() {
-            database.ref('data').on('value', snapshot => {
-                if (isLoading) return;
-                const data = snapshot.val();
-                if (data) {
-                    userData = data;
-                    renderAll();
-                }
+            database.ref('data').once('value').then(snap => {
+                const d = snap.val();
+                if (d) userData = d;
+                renderAll();
+                initFormDates();
+                isLoading = false;
+                updateSyncStatus('online');
+            }).catch(() => {
+                loadLocal();
+                renderAll();
+                initFormDates();
+                isLoading = false;
+                updateSyncStatus('offline');
             });
         }
 
-        function saveToFirebase() {
-            if (!firebaseReady || !useFirebase) {
-                saveToLocalStorage();
-                return;
-            }
-            
-            updateSyncStatus('syncing');
-            database.ref('data').set(userData)
-                .then(() => updateSyncStatus('online'))
-                .catch(err => {
-                    console.error('Erro ao salvar:', err);
-                    saveToLocalStorage();
-                    updateSyncStatus('offline');
-                });
-        }
-
-        function loadFromLocalStorage() {
-            const saved = localStorage.getItem(APP_KEY);
-            if (saved) {
-                try {
-                    userData = JSON.parse(saved);
-                } catch (e) {
-                    userData = { accounts: [], plans: [], goals: [] };
-                }
-            }
-        }
-
-        function saveToLocalStorage() {
-            localStorage.setItem(APP_KEY, JSON.stringify(userData));
+        function listenFirebase() {
+            database.ref('data').on('value', snap => {
+                if (isLoading) return;
+                const d = snap.val();
+                if (d) { userData = d; renderAll(); }
+            });
         }
 
         function saveData() {
-            saveToLocalStorage();
-            if (firebaseReady && useFirebase) {
-                saveToFirebase();
+            localStorage.setItem(APP_KEY, JSON.stringify(userData));
+            if (firebaseReady) {
+                updateSyncStatus('syncing');
+                database.ref('data').set(userData).then(() => updateSyncStatus('online')).catch(() => updateSyncStatus('offline'));
             }
         }
 
-        function updateSyncStatus(status) {
-            const dot = document.getElementById('syncDot');
-            const text = document.getElementById('syncText');
-            if (!dot || !text) return;
-            
+        function loadLocal() {
+            const s = localStorage.getItem(APP_KEY);
+            if (s) try { userData = JSON.parse(s); } catch(e) { userData = { accounts:[], plans:[], goals:[] }; }
+        }
+
+        function updateSyncStatus(s) {
+            const dot = document.getElementById('syncDot'), txt = document.getElementById('syncText');
+            if (!dot || !txt) return;
             dot.className = 'sync-dot';
-            switch(status) {
-                case 'online':
-                    text.textContent = 'Salvo na nuvem';
-                    break;
-                case 'syncing':
-                    dot.classList.add('syncing');
-                    text.textContent = 'Salvando...';
-                    break;
-                case 'offline':
-                    dot.classList.add('offline');
-                    text.textContent = 'Modo offline';
-                    break;
-            }
+            if (s === 'online') { txt.textContent = 'Online ☁️'; }
+            else if (s === 'syncing') { dot.classList.add('syncing'); txt.textContent = 'Salvando...'; }
+            else { dot.classList.add('offline'); txt.textContent = 'Offline 📱'; }
         }
 
-        // Theme
+        // ===== THEME =====
         function toggleTheme() {
             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', currentTheme);
             localStorage.setItem('contasJuntas_theme', currentTheme);
             updateThemeIcon();
-            if (document.getElementById('calendar-tab').classList.contains('active')) {
-                renderCalendar();
-            }
+            if (document.getElementById('calendar-tab').classList.contains('active')) renderCalendar();
+        }
+        function updateThemeIcon() { document.getElementById('themeToggle').textContent = currentTheme==='light'?'🌙':'☀️'; }
+
+        // ===== NAV =====
+        function switchTab(t) {
+            document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+            const el = document.getElementById(t+'-tab');
+            if (el) el.classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(b => { if (b.textContent.includes(getEmoji(t))) b.classList.add('active'); });
+            if (t==='dashboard') renderDashboard();
+            if (t==='accounts') renderAccounts();
+            if (t==='calendar') renderCalendar();
+            if (t==='plan') renderPlans();
+            if (t==='goals') renderGoals();
+            window.scrollTo({top:0,behavior:'smooth'});
+        }
+        function getEmoji(t) { return {dashboard:'🏠',accounts:'📋',calendar:'📅',plan:'🎯',goals:'🏆'}[t]||''; }
+
+        // ===== CATEGORY HANDLER =====
+        function handleCategoryChange() {
+            const cat = document.getElementById('accountCategory').value;
+            const g = document.getElementById('cartaoNameGroup');
+            g.style.display = cat === 'cartao' ? 'flex' : 'none';
         }
 
-        function updateThemeIcon() {
-            document.getElementById('themeToggle').textContent = currentTheme === 'light' ? '🌙' : '☀️';
-        }
-
-        // Navigation
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            
-            const tab = document.getElementById(`${tabName}-tab`);
-            if (tab) tab.classList.add('active');
-            
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                if (btn.textContent.includes(getTabEmoji(tabName))) btn.classList.add('active');
-            });
-            
-            if (tabName === 'dashboard') renderDashboard();
-            if (tabName === 'accounts') renderAccounts();
-            if (tabName === 'calendar') renderCalendar();
-            if (tabName === 'plan') renderPlans();
-            if (tabName === 'goals') renderGoals();
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function getTabEmoji(name) {
-            const e = { dashboard:'🏠', accounts:'📋', calendar:'📅', plan:'🎯', goals:'🏆' };
-            return e[name] || '';
-        }
-
-        // Dashboard
+        // ===== DASHBOARD =====
         function renderDashboard() {
             const today = currentDate;
-            const monthStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}`;
-            const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-            
-            document.getElementById('currentMonthLabel').textContent = `${monthNames[today.getMonth()]} ${today.getFullYear()}`;
-            
-            const monthAccounts = userData.accounts.filter(acc => acc.date.startsWith(monthStr));
-            const total = monthAccounts.reduce((s, a) => s + (a.amount || 0), 0);
-            const paid = monthAccounts.filter(a => a.paid).reduce((s, a) => s + (a.amount || 0), 0);
+            const ms = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}`;
+            const mn = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+            document.getElementById('currentMonthLabel').textContent = `${mn[today.getMonth()]} ${today.getFullYear()}`;
+            const ma = userData.accounts.filter(a => a.date.startsWith(ms));
+            const total = ma.reduce((s,a) => s + (a.amount||0), 0);
+            const paid = ma.filter(a => a.paid).reduce((s,a) => s + (a.amount||0), 0);
             const pending = total - paid;
-            const overdue = monthAccounts.filter(a => !a.paid && a.date < today.toISOString().split('T')[0]).length;
-            const dueToday = monthAccounts.filter(a => a.date === today.toISOString().split('T')[0]).length;
-            
+            const overdue = ma.filter(a => !a.paid && a.date < today.toISOString().split('T')[0]).length;
+            const dueToday = ma.filter(a => a.date === today.toISOString().split('T')[0]).length;
             document.getElementById('dashboardStats').innerHTML = `
-                <div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value">${monthAccounts.length}</div><div class="stat-label">Contas do Mês</div></div>
+                <div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value">${ma.length}</div><div class="stat-label">Contas do Mês</div></div>
                 <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-value" style="color:var(--success);-webkit-text-fill-color:var(--success);">R$ ${paid.toFixed(0)}</div><div class="stat-label">Pagas</div></div>
                 <div class="stat-card"><div class="stat-icon">❌</div><div class="stat-value" style="color:var(--danger);-webkit-text-fill-color:var(--danger);">R$ ${pending.toFixed(0)}</div><div class="stat-label">Pendentes</div></div>
                 <div class="stat-card"><div class="stat-icon">⚠</div><div class="stat-value">${overdue}</div><div class="stat-label">Vencidas</div></div>
                 <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-value">${dueToday}</div><div class="stat-label">Hoje</div></div>
-                <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-value">R$ ${total.toFixed(0)}</div><div class="stat-label">Total do Mês</div></div>
-            `;
-            
-            const upcoming = monthAccounts.filter(a => !a.paid).sort((a,b) => new Date(a.date) - new Date(b.date)).slice(0, 8);
-            document.getElementById('monthAccounts').innerHTML = upcoming.length > 0 ?
-                upcoming.map(acc => `
-                    <div style="padding:12px;background:var(--white);border-radius:var(--radius-sm);margin:6px 0;display:flex;justify-content:space-between;align-items:center;border-left:3px solid ${acc.date < today.toISOString().split('T')[0] ? 'var(--danger)' : 'var(--warning)'};">
-                        <div>
-                            <strong>${acc.name}</strong>
-                            <div style="font-size:0.8em;color:var(--gray);">📅 ${formatDate(acc.date)}</div>
-                        </div>
-                        <div style="text-align:right;">
-                            <strong>R$ ${(acc.amount||0).toFixed(2)}</strong>
-                            <br><span class="badge badge-warning">${acc.category}</span>
-                        </div>
-                    </div>
-                `).join('') :
-                '<div class="empty-state"><div class="empty-state-icon">🎉</div><h3>Tudo em dia!</h3></div>';
+                <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-value">R$ ${total.toFixed(0)}</div><div class="stat-label">Total do Mês</div></div>`;
+            const up = ma.filter(a => !a.paid).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,8);
+            document.getElementById('monthAccounts').innerHTML = up.length ? up.map(a => `
+                <div style="padding:12px;background:var(--white);border-radius:var(--radius-sm);margin:6px 0;display:flex;justify-content:space-between;align-items:center;border-left:3px solid ${a.date<today.toISOString().split('T')[0]?'var(--danger)':'var(--warning)'};">
+                    <div><strong>${a.name}</strong><div style="font-size:0.8em;color:var(--gray);">📅 ${fmt(a.date)}</div></div>
+                    <div style="text-align:right;"><strong>R$ ${(a.amount||0).toFixed(2)}</strong></div>
+                </div>`).join('') : '<div class="empty-state"><div class="empty-state-icon">🎉</div><h3>Tudo em dia!</h3></div>';
         }
 
-        // Accounts
+        // ===== ACCOUNTS =====
         function addAccount() {
             const name = document.getElementById('accountName').value.trim();
             const amount = parseFloat(document.getElementById('accountAmount').value);
             const date = document.getElementById('accountDate').value;
             const category = document.getElementById('accountCategory').value;
+            const cartaoName = document.getElementById('cartaoName').value.trim();
             const obs = document.getElementById('accountObs').value.trim();
-
-            if (!name || !amount || !date) {
-                showToast('❌ Preencha todos os campos!', 'error');
-                return;
-            }
-
+            if (!name || !amount || !date) { showToast('❌ Preencha todos os campos!','error'); return; }
             const account = {
-                id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
+                id: Date.now().toString()+Math.random().toString(36).substr(2,5),
                 name, amount, date, category, obs,
+                cartaoName: category==='cartao' ? cartaoName : '',
                 paid: false, paidDate: null,
-                isRecurring: category === 'fixa',
-                parentId: null,
-                createdAt: new Date().toISOString()
+                isRecurring: ['aluguel','luz','internet'].includes(category),
+                parentId: null, createdAt: new Date().toISOString()
             };
-
             userData.accounts.push(account);
-            if (category === 'fixa') generateRecurringForAccount(account);
-            
+            if (account.isRecurring) generateRecurring(account);
             saveData();
             renderAccounts();
             renderDashboard();
             if (document.getElementById('calendar-tab').classList.contains('active')) renderCalendar();
             clearForm();
-            showToast('✅ Conta adicionada!', 'success');
+            showToast('✅ Conta adicionada!','success');
         }
 
-        function generateRecurringForAccount(baseAccount) {
-            const baseDate = new Date(baseAccount.date + 'T00:00:00');
-            for (let i = 1; i <= 6; i++) {
-                const nextDate = new Date(baseDate);
-                nextDate.setMonth(baseDate.getMonth() + i);
-                const dateStr = nextDate.toISOString().split('T')[0];
-                
-                if (!userData.accounts.some(acc => acc.name === baseAccount.name && acc.date === dateStr)) {
-                    userData.accounts.push({
-                        ...baseAccount,
-                        id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
-                        date: dateStr,
-                        paid: false,
-                        paidDate: null,
-                        parentId: baseAccount.id,
-                        createdAt: new Date().toISOString()
-                    });
+        function generateRecurring(base) {
+            const bd = new Date(base.date+'T00:00:00');
+            for (let i=1;i<=6;i++) {
+                const nd = new Date(bd); nd.setMonth(bd.getMonth()+i);
+                const ds = nd.toISOString().split('T')[0];
+                if (!userData.accounts.some(a => a.name===base.name && a.date===ds)) {
+                    userData.accounts.push({...base, id:Date.now().toString()+Math.random().toString(36).substr(2,5), date:ds, paid:false, paidDate:null, parentId:base.id, createdAt:new Date().toISOString()});
                 }
             }
             saveData();
         }
 
         function generateFixedAccounts() {
-            const fixed = userData.accounts.filter(acc => acc.isRecurring && !acc.parentId);
-            let count = 0;
-            fixed.forEach(acc => {
-                const before = userData.accounts.length;
-                generateRecurringForAccount(acc);
-                count += userData.accounts.length - before;
-            });
-            showToast(count > 0 ? `✅ ${count} contas geradas!` : '📋 Já estão em dia!', 'info');
-            renderAccounts();
-            renderDashboard();
+            const fixed = userData.accounts.filter(a => a.isRecurring && !a.parentId);
+            let c = 0;
+            fixed.forEach(a => { const b = userData.accounts.length; generateRecurring(a); c += userData.accounts.length - b; });
+            showToast(c>0?`✅ ${c} contas geradas!`:'📋 Já estão em dia!','info');
+            renderAccounts(); renderDashboard();
         }
 
         function togglePaid(id) {
-            const account = userData.accounts.find(acc => acc.id === id);
-            if (!account) return;
-            account.paid = !account.paid;
-            account.paidDate = account.paid ? new Date().toISOString() : null;
+            const a = userData.accounts.find(x => x.id===id);
+            if (!a) return;
+            a.paid = !a.paid;
+            a.paidDate = a.paid ? new Date().toISOString() : null;
             saveData();
-            renderAccounts();
-            renderDashboard();
+            renderAccounts(); renderDashboard();
             if (document.getElementById('calendar-tab').classList.contains('active')) renderCalendar();
-            showToast(account.paid ? '✅ Paga!' : '🔄 Pendente!', account.paid ? 'success' : 'warning');
+            showToast(a.paid?'✅ Paga!':'🔄 Pendente!', a.paid?'success':'warning');
         }
 
         function deleteAccount(id) {
             if (confirm('Excluir esta conta?')) {
-                userData.accounts = userData.accounts.filter(acc => acc.id !== id);
-                saveData();
-                renderAccounts();
-                renderDashboard();
+                userData.accounts = userData.accounts.filter(a => a.id!==id);
+                saveData(); renderAccounts(); renderDashboard();
                 if (document.getElementById('calendar-tab').classList.contains('active')) renderCalendar();
-                showToast('🗑 Excluída!', 'warning');
+                showToast('🗑 Excluída!','warning');
             }
         }
 
-        function setFilter(type, value, element) {
+        function setFilter(type, value, el) {
             activeFilters[type] = value;
-            if (element) {
-                element.parentElement.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-                element.classList.add('active');
-            }
+            if (el) { el.parentElement.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active')); el.classList.add('active'); }
             renderAccounts();
         }
 
         function renderAccounts() {
             const list = document.getElementById('accountsList');
             if (!list) return;
-            
-            const search = (document.getElementById('searchAccounts')?.value || '').toLowerCase();
+            const search = (document.getElementById('searchAccounts')?.value||'').toLowerCase();
             const today = currentDate.toISOString().split('T')[0];
-            
-            let filtered = userData.accounts.filter(acc => {
-                if (search && !acc.name.toLowerCase().includes(search) && 
-                    !(acc.obs || '').toLowerCase().includes(search)) return false;
-                if (activeFilters.status === 'paid' && !acc.paid) return false;
-                if (activeFilters.status === 'pending' && acc.paid) return false;
-                if (activeFilters.status === 'overdue' && (acc.paid || acc.date >= today)) return false;
-                if (activeFilters.category !== 'all' && acc.category !== activeFilters.category) return false;
+            let f = userData.accounts.filter(a => {
+                if (search && !a.name.toLowerCase().includes(search) && !(a.obs||'').toLowerCase().includes(search) && !(a.cartaoName||'').toLowerCase().includes(search)) return false;
+                if (activeFilters.status==='paid' && !a.paid) return false;
+                if (activeFilters.status==='pending' && a.paid) return false;
+                if (activeFilters.status==='overdue' && (a.paid||a.date>=today)) return false;
+                if (activeFilters.category!=='all' && a.category!==activeFilters.category) return false;
                 return true;
             });
-            
-            filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
-            
-            if (filtered.length === 0) {
-                list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📋</div><h3>Nenhuma conta</h3></div>';
-                return;
-            }
-            
-            list.innerHTML = filtered.map(acc => {
-                const isOverdue = !acc.paid && acc.date < today;
-                return `
-                    <div class="account-card ${acc.paid ? 'paid' : ''} ${isOverdue ? 'overdue' : ''} ${acc.isRecurring ? 'fixed' : ''}">
-                        <div>
-                            <div class="account-name">
-                                ${acc.name}
-                                ${acc.isRecurring ? '<span class="badge badge-primary">🔄</span>' : ''}
-                                ${acc.paid ? '<span class="badge badge-success">✅</span>' : ''}
-                                ${isOverdue ? '<span class="badge badge-danger">⚠</span>' : ''}
-                            </div>
-                            <div style="font-size:0.8em;color:var(--gray);">📅 ${formatDate(acc.date)} ${acc.obs ? '• '+acc.obs : ''}</div>
-                        </div>
-                        <div style="text-align:right;">
-                            <div class="account-amount">R$ ${(acc.amount||0).toFixed(2)}</div>
-                            <div style="margin-top:8px;display:flex;gap:4px;">
-                                <button class="btn btn-success btn-sm" onclick="togglePaid('${acc.id}')">${acc.paid?'✅':'○'}</button>
-                                <button class="btn btn-warning btn-sm" onclick="openAccountModal('${acc.id}')">ℹ</button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteAccount('${acc.id}')">🗑</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
+            f.sort((a,b)=>new Date(a.date)-new Date(b.date));
+            if (!f.length) { list.innerHTML='<div class="empty-state"><div class="empty-state-icon">📋</div><h3>Nenhuma conta</h3></div>'; return; }
+            list.innerHTML = f.map(a => {
+                const ov = !a.paid && a.date < today;
+                const displayName = a.category==='cartao' && a.cartaoName ? `${a.name} (${a.cartaoName})` : a.name;
+                return `<div class="account-card ${a.paid?'paid':''} ${ov?'overdue':''} ${a.isRecurring?'fixed':''}">
+                    <div><div class="account-name">${displayName} ${a.isRecurring?'<span class="badge badge-primary">🔄</span>':''} ${a.paid?'<span class="badge badge-success">✅</span>':''} ${ov?'<span class="badge badge-danger">⚠</span>':''}</div>
+                    <div style="font-size:0.8em;color:var(--gray);">📅 ${fmt(a.date)} • ${catLabel(a.category)} ${a.obs?'• '+a.obs:''}</div></div>
+                    <div style="text-align:right;"><div class="account-amount">R$ ${(a.amount||0).toFixed(2)}</div>
+                    <div style="margin-top:8px;display:flex;gap:4px;">
+                        <button class="btn btn-success btn-sm" onclick="togglePaid('${a.id}')">${a.paid?'✅':'○'}</button>
+                        <button class="btn btn-warning btn-sm" onclick="openAccountModal('${a.id}')">ℹ</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteAccount('${a.id}')">🗑</button></div></div></div>`;
             }).join('');
         }
 
-        // Calendar - CORRIGIDO
-        function changeMonth(delta) {
-            currentMonth += delta;
-            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
-            else if (currentMonth < 0) { currentMonth = 11; currentYear--; }
-            renderCalendar();
+        function catLabel(c) {
+            const m = {aluguel:'🏠 Aluguel',luz:'💡 Luz',internet:'🌐 Internet',cartao:'💳 Cartão',variavel:'📊 Variável',outros:'📦 Outros'};
+            return m[c]||c;
         }
 
-        function goToToday() {
-            const today = new Date();
-            currentMonth = today.getMonth();
-            currentYear = today.getFullYear();
-            renderCalendar();
-        }
+        // ===== CALENDAR =====
+        function changeMonth(d) { currentMonth+=d; if(currentMonth>11){currentMonth=0;currentYear++;} else if(currentMonth<0){currentMonth=11;currentYear--;} renderCalendar(); }
+        function goToToday() { const t=new Date(); currentMonth=t.getMonth(); currentYear=t.getFullYear(); renderCalendar(); }
 
         function renderCalendar() {
             const grid = document.getElementById('calendarGrid');
             if (!grid) return;
-            
-            const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-            const weekDays = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-            
-            document.getElementById('currentMonthDisplay').textContent = `${monthNames[currentMonth]} ${currentYear}`;
-            
-            // Get correct first day and total days
-            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-            const today = new Date();
-            const todayStr = today.toISOString().split('T')[0];
-            
-            let html = '';
-            
-            // Week day headers
-            weekDays.forEach(day => {
-                html += `<div class="weekday-header">${day}</div>`;
-            });
-            
-            // Empty cells before first day
-            for (let i = 0; i < firstDay; i++) {
-                html += '<div class="calendar-day empty"></div>';
+            const mn = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+            const wd = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+            document.getElementById('currentMonthDisplay').textContent = `${mn[currentMonth]} ${currentYear}`;
+            const fd = new Date(currentYear, currentMonth, 1).getDay();
+            const dim = new Date(currentYear, currentMonth+1, 0).getDate();
+            const today = new Date(); const ts = today.toISOString().split('T')[0];
+            let h = wd.map(d => `<div class="weekday-header">${d}</div>`).join('');
+            for (let i=0;i<fd;i++) h += '<div class="calendar-day empty"></div>';
+            for (let day=1;day<=dim;day++) {
+                const ds = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+                const da = userData.accounts.filter(a => a.date===ds);
+                const it = ds===ts;
+                const pc = da.filter(a=>a.paid).length;
+                const pn = da.length - pc;
+                h += `<div class="calendar-day ${it?'today':''} ${da.length>0?'has-accounts':''}" onclick="showDayAccounts('${ds}')">
+                    <div class="day-number">${day}</div>
+                    ${da.length>0?`<div class="day-indicator">${pc>0?'<span class="day-dot" style="background:var(--success);"></span>':''}${pn>0?'<span class="day-dot" style="background:var(--danger);"></span>':''}</div><span class="day-count">${da.length}</span>`:''}</div>`;
             }
-            
-            // Days of the month
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dateStr = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-                const dayAccounts = userData.accounts.filter(acc => acc.date === dateStr);
-                const isToday = dateStr === todayStr;
-                const paidCount = dayAccounts.filter(a => a.paid).length;
-                const pendingCount = dayAccounts.length - paidCount;
-                
-                html += `
-                    <div class="calendar-day ${isToday ? 'today' : ''} ${dayAccounts.length > 0 ? 'has-accounts' : ''}" 
-                         onclick="showDayAccounts('${dateStr}')">
-                        <div class="day-number">${day}</div>
-                        ${dayAccounts.length > 0 ? `
-                            <div class="day-indicator">
-                                ${paidCount > 0 ? '<span class="day-dot" style="background:var(--success);"></span>' : ''}
-                                ${pendingCount > 0 ? '<span class="day-dot" style="background:var(--danger);"></span>' : ''}
-                            </div>
-                            <span class="day-count">${dayAccounts.length} conta${dayAccounts.length>1?'s':''}</span>
-                        ` : ''}
-                    </div>
-                `;
-            }
-            
-            grid.innerHTML = html;
+            grid.innerHTML = h;
         }
 
         function showDayAccounts(date) {
-            const dayAccounts = userData.accounts.filter(acc => acc.date === date);
-            if (!dayAccounts.length) {
-                showToast('Nenhuma conta neste dia', 'info');
-                return;
-            }
-            
-            document.getElementById('modalTitle').textContent = `📅 ${formatDate(date)}`;
-            document.getElementById('modalContent').innerHTML = dayAccounts.map(acc => `
+            const da = userData.accounts.filter(a => a.date===date);
+            if (!da.length) { showToast('Nenhuma conta','info'); return; }
+            document.getElementById('modalTitle').textContent = `📅 ${fmt(date)}`;
+            document.getElementById('modalContent').innerHTML = da.map(a => `
                 <div style="padding:12px;background:var(--light);border-radius:8px;margin:8px 0;">
                     <div style="display:flex;justify-content:space-between;align-items:center;">
-                        <div>
-                            <strong>${acc.name}</strong>
-                            <div style="font-size:0.8em;color:var(--gray);">${acc.category} ${acc.obs ? '• '+acc.obs : ''}</div>
-                        </div>
-                        <strong>R$ ${(acc.amount||0).toFixed(2)}</strong>
-                    </div>
-                    <div style="margin-top:8px;display:flex;gap:6px;">
-                        <button class="btn btn-success btn-sm" onclick="togglePaid('${acc.id}');closeModal();">
-                            ${acc.paid ? '✅ Pago' : '○ Marcar Pago'}
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="deleteAccount('${acc.id}');closeModal();">🗑</button>
-                    </div>
-                </div>
-            `).join('');
-            
+                        <div><strong>${a.name}</strong><div style="font-size:0.8em;color:var(--gray);">${catLabel(a.category)}</div></div>
+                        <strong>R$ ${(a.amount||0).toFixed(2)}</strong></div>
+                    <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
+                        <button class="btn btn-success btn-sm" onclick="togglePaid('${a.id}');closeModal();">${a.paid?'✅ Pago':'○ Marcar Pago'}</button>
+                        <button class="btn btn-warning btn-sm" onclick="editObsFromCalendar('${a.id}')">📝 Obs</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteAccount('${a.id}');closeModal();">🗑</button></div></div>`).join('');
             document.getElementById('accountModal').classList.add('show');
         }
 
-        function checkOverdueAccounts() {
-            const today = currentDate.toISOString().split('T')[0];
-            const overdue = userData.accounts.filter(acc => !acc.paid && acc.date < today);
-            if (overdue.length > 0) {
-                showToast(`⚠ ${overdue.length} conta(s) vencida(s)!`, 'warning');
-                setFilter('status', 'overdue', document.querySelector('.filter-pill[onclick*="overdue"]'));
-                switchTab('accounts');
-            } else {
-                showToast('✅ Nenhuma conta vencida!', 'success');
+        function editObsFromCalendar(id) {
+            const a = userData.accounts.find(x => x.id===id);
+            if (!a) return;
+            const obs = prompt('Editar observação:', a.obs||'');
+            if (obs !== null) {
+                a.obs = obs.trim();
+                saveData();
+                renderAccounts();
+                if (document.getElementById('calendar-tab').classList.contains('active')) renderCalendar();
+                showToast('📝 Observação atualizada!','success');
+                closeModal();
             }
         }
 
-        function checkOverdueSilent() {
-            const today = currentDate.toISOString().split('T')[0];
-            const overdue = userData.accounts.filter(acc => !acc.paid && acc.date < today);
-            if (overdue.length > 0 && document.getElementById('dashboard-tab').classList.contains('active')) {
-                renderDashboard();
-            }
-        }
-
-        // Plans
+        // ===== PLANS =====
         function createPlan() {
             const name = document.getElementById('planName').value.trim();
             const goal = parseFloat(document.getElementById('planGoal').value);
-            const startDate = document.getElementById('planStartDate').value;
-            let endDate = document.getElementById('planEndDate').value;
+            const sd = document.getElementById('planStartDate').value;
+            let ed = document.getElementById('planEndDate').value;
             const months = parseInt(document.getElementById('planMonths').value);
-
-            if (!name || !goal || !startDate) { showToast('❌ Preencha os campos!', 'error'); return; }
-            if (!endDate && !months) { showToast('❌ Informe data alvo ou meses!', 'error'); return; }
-            if (!endDate && months) {
-                const start = new Date(startDate + 'T00:00:00');
-                start.setMonth(start.getMonth() + months);
-                endDate = start.toISOString().split('T')[0];
-            }
-
-            userData.plans.push({
-                id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
-                name, goal, startDate, endDate,
-                saved: 0, deposits: [], completed: false,
-                createdAt: new Date().toISOString()
-            });
-            saveData();
-            renderPlans();
-            clearPlanForm();
-            showToast('✅ Plano criado!', 'success');
+            if (!name||!goal||!sd) { showToast('❌ Preencha!','error'); return; }
+            if (!ed && !months) { showToast('❌ Data alvo ou meses!','error'); return; }
+            if (!ed && months) { const s=new Date(sd+'T00:00:00'); s.setMonth(s.getMonth()+months); ed=s.toISOString().split('T')[0]; }
+            userData.plans.push({id:Date.now().toString()+Math.random().toString(36).substr(2,5),name,goal,startDate:sd,endDate:ed,saved:0,deposits:[],completed:false,createdAt:new Date().toISOString()});
+            saveData(); renderPlans(); clearPlanForm();
+            showToast('✅ Plano criado!','success');
         }
 
         function showDepositForm() {
-            if (!userData.plans.filter(p => !p.completed).length) {
-                showToast('❌ Crie um plano primeiro!', 'error');
-                return;
-            }
-            document.getElementById('depositDate').value = currentDate.toISOString().split('T')[0];
+            const active = userData.plans.filter(p => !p.completed);
+            if (!active.length) { showToast('❌ Crie um plano!','error'); return; }
+            const sel = document.getElementById('depositPlanSelect');
+            sel.innerHTML = active.map(p => `<option value="${p.id}">${p.name} (R$ ${p.goal.toFixed(0)})</option>`).join('');
             document.getElementById('depositModal').classList.add('show');
         }
-
         function closeDepositModal() { document.getElementById('depositModal').classList.remove('show'); }
 
         function addDeposit() {
+            const planId = document.getElementById('depositPlanSelect').value;
             const amount = parseFloat(document.getElementById('depositAmount').value);
-            const date = document.getElementById('depositDate').value;
-            const description = document.getElementById('depositDescription').value.trim();
-            if (!amount || !date) { showToast('❌ Preencha valor e data!', 'error'); return; }
-
-            const activePlan = userData.plans.find(p => !p.completed);
-            if (!activePlan) return;
-            
-            activePlan.saved += amount;
-            activePlan.deposits.push({ amount, date, description: description || 'Depósito' });
-            if (activePlan.saved >= activePlan.goal) {
-                activePlan.completed = true;
-                showToast('🎉 Meta alcançada! Parabéns!', 'success');
-            }
-            
+            const desc = document.getElementById('depositDescription').value.trim();
+            if (!amount) { showToast('❌ Valor!','error'); return; }
+            const plan = userData.plans.find(p => p.id===planId);
+            if (!plan) return;
+            plan.saved += amount;
+            plan.deposits.push({amount,date:new Date().toISOString(),description:desc||'Depósito'});
+            if (plan.saved >= plan.goal) { plan.completed = true; showToast('🎉 Meta alcançada!','success'); }
             document.getElementById('depositAmount').value = '';
             document.getElementById('depositDescription').value = '';
-            saveData();
-            renderPlans();
-            closeDepositModal();
-            showToast(`💵 Depositado R$ ${amount.toFixed(2)}!`, 'success');
+            saveData(); renderPlans(); closeDepositModal();
+            showToast(`💵 Depositado R$ ${amount.toFixed(2)}!`,'success');
         }
 
-        function deleteDeposit(planId, depositIndex) {
-            if (confirm('Excluir depósito?')) {
-                const plan = userData.plans.find(p => p.id === planId);
-                if (plan) {
-                    plan.saved -= plan.deposits[depositIndex].amount;
-                    plan.deposits.splice(depositIndex, 1);
-                    plan.completed = false;
-                    saveData();
-                    renderPlans();
-                }
+        function deleteDeposit(planId, idx) {
+            if (confirm('Excluir?')) {
+                const plan = userData.plans.find(p => p.id===planId);
+                if (plan) { plan.saved -= plan.deposits[idx].amount; plan.deposits.splice(idx,1); plan.completed=false; saveData(); renderPlans(); }
             }
         }
-
-        function deletePlan(planId) {
-            if (confirm('Excluir plano?')) {
-                userData.plans = userData.plans.filter(p => p.id !== planId);
-                saveData();
-                renderPlans();
-            }
-        }
+        function deletePlan(id) { if (confirm('Excluir plano?')) { userData.plans = userData.plans.filter(p => p.id!==id); saveData(); renderPlans(); } }
 
         function renderPlans() {
             const active = userData.plans.filter(p => !p.completed);
-            const completed = userData.plans.filter(p => p.completed);
-            
-            document.getElementById('activePlan').innerHTML = active.length === 0 ?
-                '<div class="empty-state"><div class="empty-state-icon">🎯</div><h3>Sem planos ativos</h3></div>' :
-                active.map(plan => renderPlanCard(plan)).join('');
-            
-            document.getElementById('plansHistory').innerHTML = completed.length > 0 ?
-                '<h3>🏆 Conquistas</h3>' + completed.map(plan => renderPlanCard(plan)).join('') : '';
+            const done = userData.plans.filter(p => p.completed);
+            document.getElementById('activePlan').innerHTML = active.length ? active.map(p => renderPlanCard(p)).join('') : '<div class="empty-state"><div class="empty-state-icon">🎯</div><h3>Sem planos</h3></div>';
+            document.getElementById('plansHistory').innerHTML = done.length ? '<h3>🏆 Conquistas</h3>'+done.map(p => renderPlanCard(p)).join('') : '';
         }
 
         function renderPlanCard(plan) {
-            const start = new Date(plan.startDate + 'T00:00:00');
-            const end = new Date(plan.endDate + 'T00:00:00');
-            const today = new Date();
-            const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
-            const daysPassed = Math.ceil((today - start) / (1000 * 60 * 60 * 24));
-            const daysRemaining = Math.max(0, totalDays - daysPassed);
-            const remaining = Math.max(0, plan.goal - plan.saved);
-            const monthsRemaining = daysRemaining / 30;
-            const monthlyNeeded = monthsRemaining > 0 ? remaining / monthsRemaining : remaining;
-            const weeklyNeeded = monthlyNeeded / 4;
-            const progress = Math.min((plan.saved / plan.goal) * 100, 100);
-            
-            return `
-                <div class="plan-card ${plan.completed ? 'completed-plan' : 'active-plan'}">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-                        <h3>${plan.name} ${plan.completed ? '🏆' : ''}</h3>
-                        ${!plan.completed ? `<button class="btn btn-danger btn-sm" onclick="deletePlan('${plan.id}')">🗑</button>` : ''}
-                    </div>
-                    <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr));">
-                        <div class="stat-card"><div class="stat-label">💰 Objetivo</div><div class="stat-value">R$ ${plan.goal.toFixed(0)}</div></div>
-                        <div class="stat-card"><div class="stat-label">💵 Guardado</div><div class="stat-value" style="color:var(--success);-webkit-text-fill-color:var(--success);">R$ ${plan.saved.toFixed(0)}</div></div>
-                        <div class="stat-card"><div class="stat-label">📊 Restante</div><div class="stat-value">R$ ${remaining.toFixed(0)}</div></div>
-                        <div class="stat-card"><div class="stat-label">📅 Por Mês</div><div class="stat-value">R$ ${monthlyNeeded.toFixed(0)}</div></div>
-                        <div class="stat-card"><div class="stat-label">📆 Por Semana</div><div class="stat-value">R$ ${weeklyNeeded.toFixed(0)}</div></div>
-                        <div class="stat-card"><div class="stat-label">⏳ Dias</div><div class="stat-value">${daysRemaining}</div></div>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${progress}%">${progress.toFixed(1)}%</div></div>
-                    <small style="color:var(--gray);">📅 ${formatDate(plan.startDate)} até ${formatDate(plan.endDate)}</small>
-                    ${plan.deposits.length > 0 ? `
-                        <div style="margin-top:10px;"><strong>📋 Depósitos:</strong>
-                            ${plan.deposits.slice(-5).reverse().map((dep, i) => `
-                                <div style="display:flex;justify-content:space-between;padding:6px;background:var(--light);border-radius:6px;margin:4px 0;font-size:0.85em;">
-                                    <span>${dep.description || 'Depósito'}</span>
-                                    <div style="display:flex;align-items:center;gap:6px;">
-                                        <span style="color:var(--success);">+R$ ${dep.amount.toFixed(2)}</span>
-                                        ${!plan.completed ? `<button class="btn btn-danger btn-sm" onclick="deleteDeposit('${plan.id}', ${plan.deposits.length-1-i})">🗑</button>` : ''}
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    ` : ''}
-                </div>
-            `;
+            const start = new Date(plan.startDate+'T00:00:00'), end = new Date(plan.endDate+'T00:00:00'), today = new Date();
+            const td = Math.ceil((end-start)/(1000*60*60*24)), dp = Math.ceil((today-start)/(1000*60*60*24));
+            const dr = Math.max(0,td-dp), rem = Math.max(0,plan.goal-plan.saved);
+            const mn = dr/30, mth = mn>0?rem/mn:rem, wk = mth/4;
+            const prog = Math.min((plan.saved/plan.goal)*100,100);
+            return `<div class="plan-card ${plan.completed?'completed-plan':'active-plan'}">
+                <div style="display:flex;justify-content:space-between;margin-bottom:12px;"><h3>${plan.name} ${plan.completed?'🏆':''}</h3>${!plan.completed?`<button class="btn btn-danger btn-sm" onclick="deletePlan('${plan.id}')">🗑</button>`:''}</div>
+                <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(110px,1fr));">
+                    <div class="stat-card"><div class="stat-label">💰 Objetivo</div><div class="stat-value">R$ ${plan.goal.toFixed(0)}</div></div>
+                    <div class="stat-card"><div class="stat-label">💵 Guardado</div><div class="stat-value" style="color:var(--success);-webkit-text-fill-color:var(--success);">R$ ${plan.saved.toFixed(0)}</div></div>
+                    <div class="stat-card"><div class="stat-label">📊 Falta</div><div class="stat-value">R$ ${rem.toFixed(0)}</div></div>
+                    <div class="stat-card"><div class="stat-label">📅 Mês</div><div class="stat-value">R$ ${mth.toFixed(0)}</div></div>
+                    <div class="stat-card"><div class="stat-label">📆 Semana</div><div class="stat-value">R$ ${wk.toFixed(0)}</div></div>
+                    <div class="stat-card"><div class="stat-label">⏳ Dias</div><div class="stat-value">${dr}</div></div></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:${prog}%">${prog.toFixed(1)}%</div></div>
+                <small>📅 ${fmt(plan.startDate)} → ${fmt(plan.endDate)}</small>
+                ${plan.deposits.length?`<div style="margin-top:8px;"><strong>📋 Depósitos:</strong>${plan.deposits.slice(-5).reverse().map((d,i)=>`<div style="display:flex;justify-content:space-between;padding:5px;background:var(--light);border-radius:5px;margin:3px 0;font-size:0.8em;"><span>${d.description}</span><span style="color:var(--success);">+R$ ${d.amount.toFixed(2)}</span>${!plan.completed?`<button class="btn btn-danger btn-sm" onclick="deleteDeposit('${plan.id}',${plan.deposits.length-1-i})" style="padding:1px 4px;">🗑</button>`:''}</div>`).join('')}</div>`:''}</div>`;
         }
 
-        // Goals
+        // ===== GOALS =====
         function addGoal() {
-            const name = document.getElementById('goalName').value.trim();
-            const deadline = document.getElementById('goalDeadline').value;
-            const progress = parseInt(document.getElementById('goalProgress').value);
-            if (!name) { showToast('❌ Informe o nome!', 'error'); return; }
-
-            userData.goals.push({
-                id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
-                name, deadline, progress,
-                createdAt: new Date().toISOString()
-            });
-            saveData();
-            renderGoals();
-            document.getElementById('goalName').value = '';
-            document.getElementById('goalProgress').value = 0;
-            document.getElementById('progressValue').textContent = '0';
-            showToast('✅ Meta adicionada!', 'success');
+            const n = document.getElementById('goalName').value.trim();
+            const dl = document.getElementById('goalDeadline').value;
+            const p = parseInt(document.getElementById('goalProgress').value);
+            if (!n) { showToast('❌ Nome!','error'); return; }
+            userData.goals.push({id:Date.now().toString()+Math.random().toString(36).substr(2,5),name:n,deadline:dl,progress:p,createdAt:new Date().toISOString()});
+            saveData(); renderGoals();
+            document.getElementById('goalName').value=''; document.getElementById('goalProgress').value=0; document.getElementById('progressValue').textContent='0';
+            showToast('✅ Meta!','success');
         }
-
         function updateGoalProgress(id) {
-            const goal = userData.goals.find(g => g.id === id);
-            if (!goal) return;
-            const p = prompt('Progresso (0-100):', goal.progress);
-            if (p !== null) {
-                goal.progress = Math.min(100, Math.max(0, parseInt(p) || 0));
-                saveData();
-                renderGoals();
-            }
+            const g = userData.goals.find(x => x.id===id); if (!g) return;
+            const p = prompt('Progresso (0-100):',g.progress);
+            if (p!==null) { g.progress = Math.min(100,Math.max(0,parseInt(p)||0)); saveData(); renderGoals(); }
         }
-
-        function deleteGoal(id) {
-            if (confirm('Excluir meta?')) {
-                userData.goals = userData.goals.filter(g => g.id !== id);
-                saveData();
-                renderGoals();
-            }
-        }
-
+        function deleteGoal(id) { if (confirm('Excluir?')) { userData.goals = userData.goals.filter(g => g.id!==id); saveData(); renderGoals(); } }
         function renderGoals() {
-            const c = document.getElementById('goalsList');
-            if (!c) return;
-            if (userData.goals.length === 0) {
-                c.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🏆</div><h3>Sem metas</h3></div>';
-                return;
-            }
-            c.innerHTML = userData.goals.map(g => `
-                <div style="background:var(--white);padding:16px;border-radius:var(--radius);">
-                    <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
-                        <h3>${g.name}</h3>
-                        <div style="display:flex;gap:6px;">
-                            <button class="btn btn-warning btn-sm" onclick="updateGoalProgress('${g.id}')">📊</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteGoal('${g.id}')">🗑</button>
-                        </div>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${g.progress}%">${g.progress}%</div></div>
-                    <small style="color:var(--gray);">${g.deadline ? '📅 '+formatDate(g.deadline)+' • ' : ''}Criada: ${formatDate(g.createdAt)}</small>
-                </div>
-            `).join('');
+            const c = document.getElementById('goalsList'); if (!c) return;
+            if (!userData.goals.length) { c.innerHTML='<div class="empty-state"><div class="empty-state-icon">🏆</div><h3>Sem metas</h3></div>'; return; }
+            c.innerHTML = userData.goals.map(g => `<div style="background:var(--white);padding:16px;border-radius:var(--radius);"><div style="display:flex;justify-content:space-between;margin-bottom:10px;"><h3>${g.name}</h3><div style="display:flex;gap:6px;"><button class="btn btn-warning btn-sm" onclick="updateGoalProgress('${g.id}')">📊</button><button class="btn btn-danger btn-sm" onclick="deleteGoal('${g.id}')">🗑</button></div></div><div class="progress-bar"><div class="progress-fill" style="width:${g.progress}%">${g.progress}%</div></div><small style="color:var(--gray);">${g.deadline?'📅 '+fmt(g.deadline)+' • ':''}${fmt(g.createdAt)}</small></div>`).join('');
         }
 
-        // Modals
+        // ===== MODALS =====
         function openAccountModal(id) {
-            const acc = userData.accounts.find(a => a.id === id);
-            if (!acc) return;
-            document.getElementById('modalTitle').textContent = acc.name;
+            const a = userData.accounts.find(x => x.id===id); if (!a) return;
+            document.getElementById('modalTitle').textContent = a.name;
             document.getElementById('modalContent').innerHTML = `
-                <div style="margin-bottom:12px;">
-                    <span class="badge badge-${acc.category==='fixa'?'primary':'warning'}">${acc.category}</span>
-                    ${acc.isRecurring ? '<span class="badge badge-primary">Recorrente</span>' : ''}
-                    ${acc.paid ? '<span class="badge badge-success">Pago</span>' : ''}
-                </div>
-                <p><strong>💰 Valor:</strong> R$ ${(acc.amount||0).toFixed(2)}</p>
-                <p><strong>📅 Vencimento:</strong> ${formatDate(acc.date)}</p>
-                <p><strong>💬 Obs:</strong> ${acc.obs || 'Nenhuma'}</p>
-                ${acc.paidDate ? `<p><strong>✅ Pago em:</strong> ${formatDate(acc.paidDate)}</p>` : ''}
-                <div style="margin-top:15px;display:flex;gap:8px;">
-                    <button class="btn btn-success" onclick="togglePaid('${acc.id}');closeModal();">${acc.paid ? '🔄 Desmarcar' : '✅ Marcar Pago'}</button>
-                    <button class="btn btn-danger" onclick="deleteAccount('${acc.id}');closeModal();">🗑 Excluir</button>
-                </div>
-            `;
+                <p><strong>💰 Valor:</strong> R$ ${(a.amount||0).toFixed(2)}</p>
+                <p><strong>📅 Vencimento:</strong> ${fmt(a.date)}</p>
+                <p><strong>🏷 Categoria:</strong> ${catLabel(a.category)} ${a.cartaoName?'('+a.cartaoName+')':''}</p>
+                <p><strong>💬 Obs:</strong> ${a.obs||'Nenhuma'}</p>
+                ${a.paidDate?`<p><strong>✅ Pago em:</strong> ${fmt(a.paidDate)}</p>`:''}
+                <div style="margin-top:15px;display:flex;gap:8px;flex-wrap:wrap;">
+                    <button class="btn btn-success" onclick="togglePaid('${a.id}');closeModal();">${a.paid?'🔄 Desmarcar':'✅ Marcar Pago'}</button>
+                    <button class="btn btn-warning" onclick="editObsFromCalendar('${a.id}')">📝 Editar Obs</button>
+                    <button class="btn btn-danger" onclick="deleteAccount('${a.id}');closeModal();">🗑 Excluir</button></div>`;
             document.getElementById('accountModal').classList.add('show');
         }
+        function closeModal() { document.getElementById('accountModal').classList.remove('show'); }
 
-        function closeModal() {
-            document.getElementById('accountModal').classList.remove('show');
-        }
-
-        // Export/Import
+        // ===== EXPORT/IMPORT =====
         function exportData() {
-            const data = { ...userData, exportDate: new Date().toISOString() };
-            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `contasjuntas_backup_${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            showToast('📥 Backup exportado!', 'success');
+            const d = {...userData, exportDate: new Date().toISOString()};
+            const b = new Blob([JSON.stringify(d,null,2)],{type:'application/json'});
+            const a = document.createElement('a'); a.href=URL.createObjectURL(b);
+            a.download=`contasjuntas_${new Date().toISOString().split('T')[0]}.json`; a.click();
+            showToast('📥 Exportado!','success');
         }
-
         function importData() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        if (data.accounts) {
-                            userData = data;
-                            saveData();
-                            renderAll();
-                            showToast('📤 Dados importados!', 'success');
-                        }
-                    } catch (err) {
-                        showToast('❌ Arquivo inválido!', 'error');
-                    }
-                };
-                reader.readAsText(file);
+            const inp = document.createElement('input'); inp.type='file'; inp.accept='.json';
+            inp.onchange=(e)=>{
+                const f=e.target.files[0]; if(!f) return;
+                const r=new FileReader();
+                r.onload=(ev)=>{ try{ const d=JSON.parse(ev.target.result); if(d.accounts){userData=d;saveData();renderAll();showToast('📤 Importado!','success');} }catch{showToast('❌ Inválido!','error');} };
+                r.readAsText(f);
             };
-            input.click();
+            inp.click();
         }
 
-        // Utilities
-        function formatDate(dateStr) {
-            if (!dateStr) return '';
-            const parts = dateStr.split('-');
-            if (parts.length !== 3) return dateStr;
-            return `${parts[2]}/${parts[1]}/${parts[0]}`;
-        }
+        // ===== UTILS =====
+        function fmt(d) { if(!d) return ''; const p=d.split('-'); return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:d; }
+        function clearForm() { ['accountName','accountAmount','accountObs','cartaoName'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';}); document.getElementById('accountDate').value=currentDate.toISOString().split('T')[0]; document.getElementById('cartaoNameGroup').style.display='none'; }
+        function clearPlanForm() { ['planName','planGoal','planEndDate','planMonths'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';}); document.getElementById('planStartDate').value=currentDate.toISOString().split('T')[0]; }
+        function initFormDates() { const t=currentDate.toISOString().split('T')[0]; ['accountDate','planStartDate'].forEach(id=>{const e=document.getElementById(id);if(e&&!e.value)e.value=t;}); }
+        function showToast(msg,type='info') { const c=document.getElementById('toastContainer'); const t=document.createElement('div'); t.className=`toast ${type}`; t.innerHTML=`<span>${msg}</span>`; c.appendChild(t); setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity 0.3s';setTimeout(()=>t.remove(),300);},3000); }
+        function quickAddAccount() { switchTab('accounts'); setTimeout(()=>{const e=document.getElementById('accountName');if(e)e.focus();window.scrollTo({top:0,behavior:'smooth'});},200); }
+        function renderAll() { renderDashboard(); renderAccounts(); if(document.getElementById('calendar-tab').classList.contains('active')) renderCalendar(); renderPlans(); renderGoals(); initFormDates(); }
 
-        function clearForm() {
-            ['accountName', 'accountAmount', 'accountObs'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.value = '';
-            });
-            const dateEl = document.getElementById('accountDate');
-            if (dateEl) dateEl.value = currentDate.toISOString().split('T')[0];
-        }
+        window.onclick=(e)=>{ if(e.target===document.getElementById('accountModal')) closeModal(); if(e.target===document.getElementById('depositModal')) closeDepositModal(); };
+        document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'){closeModal();closeDepositModal();} });
 
-        function clearPlanForm() {
-            ['planName', 'planGoal', 'planEndDate', 'planMonths'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.value = '';
-            });
-            const startEl = document.getElementById('planStartDate');
-            if (startEl) startEl.value = currentDate.toISOString().split('T')[0];
-        }
-
-        function initFormDates() {
-            const today = currentDate.toISOString().split('T')[0];
-            ['accountDate', 'planStartDate', 'depositDate'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el && !el.value) el.value = today;
-            });
-        }
-
-        function showToast(msg, type = 'info') {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.innerHTML = `<span>${msg}</span>`;
-            container.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.3s';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        function quickAddAccount() {
-            switchTab('accounts');
-            setTimeout(() => {
-                const el = document.getElementById('accountName');
-                if (el) el.focus();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 200);
-        }
-
-        function renderAll() {
-            renderDashboard();
-            renderAccounts();
-            if (document.getElementById('calendar-tab').classList.contains('active')) renderCalendar();
-            renderPlans();
-            renderGoals();
-            initFormDates();
-        }
-
-        // Event Listeners
-        window.onclick = (e) => {
-            if (e.target === document.getElementById('accountModal')) closeModal();
-            if (e.target === document.getElementById('depositModal')) closeDepositModal();
-        };
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') { closeModal(); closeDepositModal(); }
-        });
-
-        // Start
         init();
     </script>
 </body>
